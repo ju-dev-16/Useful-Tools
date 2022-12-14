@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Aquire-BW0ox";
+  src: local("Aquire-BW0ox"), url("../public/fonts/Aquire-BW0ox.otf") format("truetype");
+}
+  
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Aquire-BW0ox";
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
