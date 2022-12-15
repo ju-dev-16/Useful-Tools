@@ -1,19 +1,10 @@
-// import { useContext } from 'react';
-
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-// import { ThemeContext } from '../../components/provider/ThemeProvider';
+import Redirect from "../../components/ui/Redirect";
 
-// isLoggedIn 
 export default function ToolsPage() {
-  // const themeContext = useContext(ThemeContext);
-
   const router = useRouter();
-
-  // if (!isLoggedIn) {
-  //   router.push("/auth/register");
-  // }
 
   const DUMMY_DATA = [ 
     {
@@ -42,7 +33,7 @@ export default function ToolsPage() {
       </Head>
 
       <main className='p-4'>
-
+        <Redirect />
       </main>
     </div>
   );

@@ -1,6 +1,4 @@
-// import { useContext } from 'react';
-
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -8,33 +6,25 @@ import Nav from 'react-bootstrap/Nav';
 import Auth from './Auth';
 import Searchbar from './Searchbar';
 
-// import { ThemeContext } from '../provider/ThemeProvider';
-
-// switched, isSwitched, navVisibility
 export default function CustomNavbar() {
-  // const themeContext = useContext(ThemeContext);
+  const router = useRouter();
 
   return (
     <>
       <Navbar 
         expand="lg"
-        // bg={themeContext.color === "white" ? "white" : "dark"} 
-        // variant={themeContext.color === "white" ? "white" : "dark"} 
         className='border-bottom'
       >
         <Navbar.Brand className='ms-3' onClick={() => window.location.reload()} style={{cursor: "pointer"}}>
-          {/* width="30" height="30" className="d-inline-block align-top" */}
           Useful Tools
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" className='me-3' />
         <Navbar.Collapse id="navbarScroll">
-          {/* {navVisibility &&
-            <Nav className="px-3 mb-md-0 mb-3" navbarScroll>
-              <Nav.Link as={Link} to="/tools">Tools</Nav.Link>
-              <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-              <Nav.Link as={Link} to="/api/v1/docs">API</Nav.Link>
-            </Nav>
-          } */}
+          <Nav className="px-3 mb-md-0 mb-3" navbarScroll>
+            <Nav.Link onClick={() => router.push("/tools")}>Tools</Nav.Link>
+            <Nav.Link onClick={() => router.push("/profile")}>Profile</Nav.Link>
+            <Nav.Link onClick={() => router.push("/docs")}>API</Nav.Link>
+          </Nav>
           <Nav className='ms-auto px-3 d-flex align-items-center' navbarScroll>
             <Auth loginVisibility={true} />
             <Searchbar isActive={false} />
@@ -44,7 +34,6 @@ export default function CustomNavbar() {
                   xmlns="http://www.w3.org/2000/svg"
                   width="25"
                   height="25"
-                  // fill={themeContext.color === "white" ? "black" : "white"}
                   className="bi bi-brightness-high"
                   viewBox="0 0 16 16"
                 >
@@ -53,10 +42,9 @@ export default function CustomNavbar() {
                   />
                 </svg>
               </label>
-              {/* checked={switched} */}
               <input id="lightSwitch" className="form-check-input" type="checkbox" onChange={(e => {
                 e.persist();
-                isSwitched(e.currentTarget.checked);
+                // isSwitched(e.currentTarget.checked);
               })} />
             </div> 
           </Nav>

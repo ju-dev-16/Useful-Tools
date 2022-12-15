@@ -6,8 +6,9 @@ import CustomNavbar from '../components/ui/navbar/CustomNavbar';
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <CustomNavbar>
+    <>
+      <CustomNavbar />
       <Component {...pageProps} />
-    </CustomNavbar>
+    </>
   );
 }

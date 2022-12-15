@@ -1,15 +1,11 @@
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 
-// import { ThemeContext } from '../../../components/provider/ThemeProvider';
-
 export default function EndpointModel({ eventKey, method, path, description, params, body }) {
-    // const themeContext = useContext(ThemeContext);
-
     const [inputVisibility, setInputVisibility] = useState(false);
     const [formData, setFormData] = useState({body : body ? body : ""});
   
@@ -61,7 +57,6 @@ export default function EndpointModel({ eventKey, method, path, description, par
         </div>
         <Form.Group className="my-3" controlId="exampleForm.ControlTextarea1">
           <Form.Control 
-          // backgroundColor: themeContext.color, color: themeContext.color === "white" ? "black" : "white"
           style={{resize: "none"}} 
           as="textarea" rows={3} 
           value={formData.body}
@@ -81,7 +76,6 @@ export default function EndpointModel({ eventKey, method, path, description, par
           >
             <Form.Label>{e[0]}</Form.Label>
             <Form.Control
-            // backgroundColor: themeContext.color, color: themeContext.color === "white" ? "black" : "white"
             style={{}}
             required={e[2] === "true" ? true : false}
             type="text"
@@ -140,7 +134,6 @@ export default function EndpointModel({ eventKey, method, path, description, par
       <Accordion.Item
       eventKey={eventKey} 
       className='rounded mb-3' 
-      // backgroundColor: themeContext.color, color: themeContext.color === "white" ? "black" : "white"}
       style={{}}>
         <Accordion.Header>
           {methodLable}
@@ -154,7 +147,6 @@ export default function EndpointModel({ eventKey, method, path, description, par
           </div>
           <div className='my-3'>
             <div className='d-flex justify-content-between flex-column'>
-              {/* color: themeContext.color === "white" ? "black" : "white" */}
               <Table responsive="sm" style={{}}>
                 <thead>
                   <tr>

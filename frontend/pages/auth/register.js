@@ -1,14 +1,10 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
 
-// import { ThemeContext } from '../../components/provider/ThemeProvider';
-
-// setNavVisibility
 export default function Register() { 
-  // const themeContext = useContext(ThemeContext);
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -17,10 +13,6 @@ export default function Register() {
     password: "",
     hasAgreedTerms: false
   });
-
-  // useEffect(() => {
-  //   setNavVisibility(false);
-  // });
 
   function handleChange(event) {
     const { name, value, checked } = event.target;
@@ -31,7 +23,6 @@ export default function Register() {
     });
   }
 
-  // backgroundColor: themeContext.color, color: themeContext.color === "white" ? "black" : "white"
   return (
     <>
       <div style={{width: "100%", height: "94vh"}}>
