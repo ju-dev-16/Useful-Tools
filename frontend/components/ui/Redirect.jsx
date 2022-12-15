@@ -1,6 +1,10 @@
+import { useRouter } from 'next/router';
+
 import Button from 'react-bootstrap/Button';
 
 export default function Redirect() {
+  const router = useRouter();
+
   return (
     <>
       <div className='w-100 mt-5'>
@@ -13,7 +17,7 @@ export default function Redirect() {
       <div className='d-flex justify-content-center mt-3'>
         <Button onClick={() => router.push("/")}>Go Home</Button>
         &nbsp;
-        <Button className='btn-danger'>API Documentation</Button>
+        <Button className='btn-danger' onClick={() => router.push("/docs")}>API Documentation</Button>
       </div>
     </>
   );

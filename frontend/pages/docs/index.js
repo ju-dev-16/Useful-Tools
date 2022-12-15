@@ -11,7 +11,7 @@ export default function DocsPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='p-4'>
+      <main>
         <div className='h-100 p-5'>
             <h1 style={{fontSize: "6vh", wordBreak: "break-word"}}>API Documentation</h1>
             <Endpoints name="tools" />

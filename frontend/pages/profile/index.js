@@ -9,12 +9,12 @@ export default function ProfilePage() {
   return (
     <div>
       <Head>
-        <title>Useful-Tools | Redirect</title>
+        <title>Useful-Tools | Profile</title>
         <meta name="description" content="A plattform to find and post useful tools. For a better online experience!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='p-4'>
+      <main className='p-5'>
         <Redirect />
       </main>
     </div>

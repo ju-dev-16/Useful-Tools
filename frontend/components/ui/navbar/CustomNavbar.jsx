@@ -15,7 +15,7 @@ export default function CustomNavbar() {
         expand="lg"
         className='border-bottom'
       >
-        <Navbar.Brand className='ms-3' onClick={() => window.location.reload()} style={{cursor: "pointer"}}>
+        <Navbar.Brand className='ms-3' onClick={() => router.push("/")} style={{cursor: "pointer"}}>
           Useful Tools
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" className='me-3' />

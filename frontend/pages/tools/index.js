@@ -32,7 +32,7 @@ export default function ToolsPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='p-4'>
+      <main className='p-5'>
         <Redirect />
       </main>
     </div>
