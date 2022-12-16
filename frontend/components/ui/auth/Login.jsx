@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export default function Login() {
+export default function Login({ children }) {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -25,8 +25,8 @@ export default function Login() {
   return (
     <> 
       <div style={{width: "100%", height: "94vh"}}>
-        <img src="/images/login.svg" alt="Login img with icon" style={{height: 200, width: "100%"}} className="mt-5 p-2" />
-        <div className='d-flex justify-content-center p-5 pb-0'>
+        <img src="/images/login.svg" alt="Login img with icon" style={{height: 200, width: "100%"}} className="mt-3 p-2" />
+        <div className='d-flex justify-content-center p-5 pb-0 pt-3'>
           <Form>
             <Form.Group
             className="mb-4"
@@ -70,11 +70,14 @@ export default function Login() {
             </div>
             <Button style={{width: "100%"}}>SIGN IN</Button>
             <div className="text-center mt-4">
-              <p>Not a member? <button onClick={() => router.push("/auth/register")} className='bg-transparent border-0 text-decoration-none text-primary pointer'>Register</button></p>
+              <p>or sign up with:</p>
+              <div className='d-flex justify-content-center w-100'>
+                {children}
+              </div>
             </div>
           </Form>
         </div>
       </div>
     </>
-  )
+  );
 }
