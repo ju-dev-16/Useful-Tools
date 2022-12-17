@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 import Auth from './Auth';
-import Searchbar from './Searchbar';
 
 export default function CustomNavbar() {
   const router = useRouter();
@@ -25,10 +24,9 @@ export default function CustomNavbar() {
             <Nav.Link onClick={() => router.push("/profile")}>Profile</Nav.Link>
             <Nav.Link onClick={() => router.push("/docs")}>API</Nav.Link>
           </Nav>
-          <Nav className='ms-auto px-3 d-flex align-items-center' navbarScroll>
+          <Nav className='ms-auto px-5 d-flex align-items-center' navbarScroll>
             <Auth loginVisibility={true} />
-            <Searchbar isActive={false} />
-            <div className="form-check form-switch ms-4 me-3 mt-md-0 mt-3">
+            {/* <div className="form-check form-switch ms-4 me-3 mt-md-0 mt-3">
               <label className="form-check-label ms-3" htmlFor="lightSwitch">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +44,7 @@ export default function CustomNavbar() {
                 e.persist();
                 // isSwitched(e.currentTarget.checked);
               })} />
-            </div> 
+            </div>  */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

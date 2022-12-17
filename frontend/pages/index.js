@@ -23,7 +23,7 @@ export default function HomePage() {
           <h4 style={{}}>For a better online experience</h4>
         </div>
         <div className='d-flex justify-content-center'>
-          <Button onClick={() => router.push("/signin")}>Getting started</Button>
+          <Button onClick={() => router.push("/signup")}>Getting started</Button>
           &nbsp;
           <Button className='btn-danger' onClick={() => router.push("/docs")}>API Documentation</Button>
         </div>
