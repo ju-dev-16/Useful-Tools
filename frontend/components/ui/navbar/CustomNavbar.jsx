@@ -24,8 +24,8 @@ export default function CustomNavbar() {
             <Nav.Link onClick={() => router.push("/profile")}>Profile</Nav.Link>
             <Nav.Link onClick={() => router.push("/docs")}>API</Nav.Link>
           </Nav>
-          <Nav className='ms-auto px-5 d-flex align-items-center' navbarScroll>
-            <Auth loginVisibility={true} />
+          <Nav className='ms-auto' navbarScroll>
+            <Auth />
             {/* <div className="form-check form-switch ms-4 me-3 mt-md-0 mt-3">
               <label className="form-check-label ms-3" htmlFor="lightSwitch">
                 <svg
