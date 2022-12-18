@@ -1,21 +1,9 @@
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
 import Head from "next/head";
 
 import Endpoints from "../../components/ui/Endpoints";
 
 export default function DocsPage() {
-  const { status } = useSession();
-  const router = useRouter();
-
-  if (status === "loading") {
-    return <p>Loading...</p>
-  }
-
-  if (status === "unauthenticated") {
-    router.push("/signin");
-  }
-
   return (
     <div>
       <Head>
@@ -32,4 +20,22 @@ export default function DocsPage() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if (session === null) {
+    return {
+      redirect: {
+        destination: "/signin?redirect=docs",
+      },
+    }
+  }
+
+  return {
+    props: {
+      session: session
+    }
+  }
 }

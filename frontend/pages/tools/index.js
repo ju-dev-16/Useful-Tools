@@ -1,21 +1,9 @@
 import Head from "next/head";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
 
 import Redirect from "../../components/ui/Redirect";
 
 export default function ToolsPage() {
-  const { status } = useSession();
-  const router = useRouter();
-
-  if (status === "loading") {
-    return <p>Loading...</p>
-  }
-
-  if (status === "unauthenticated") {
-    router.push("/signin");
-  }
-
   const DUMMY_DATA = [ 
     {
         name: "Fuel consumption calculator",
@@ -47,4 +35,22 @@ export default function ToolsPage() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if (session === null) {
+    return {
+      redirect: {
+        destination: "/signin?redirect=tools",
+      },
+    }
+  }
+
+  return {
+    props: {
+      session: session
+    }
+  }
 }

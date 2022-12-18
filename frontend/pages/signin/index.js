@@ -127,9 +127,11 @@ export async function getServerSideProps(context) {
   const { req } = context;
   const session = await getSession({ req });
 
+  const redirectUrl = context.query["redirect"];
+
   if (session) {
     return {
-      redirect: { destination: "/docs" },
+      redirect: { destination: redirectUrl ? "/" + redirectUrl : "/" },
     };
   }
 
