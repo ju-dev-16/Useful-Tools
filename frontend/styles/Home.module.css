@@ -1,0 +1,38 @@
+.grid {
+  font-family: "Open sans";
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+  
+.card {
+  padding: 1rem 1.2rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin-top: 30px;
+}
+  
+.card h2 {
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+  
+.card p {
+  margin: 0;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 30ch;
+}
+
+.card:hover {
+  transition: ease-in 0s;
+  color: black;
+  opacity: 1;
+}

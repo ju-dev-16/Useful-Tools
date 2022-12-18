@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SignInPage({ providers }) {
