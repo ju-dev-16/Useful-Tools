@@ -23,7 +23,7 @@ export default function HomePage() {
         </div>
         <div className='w-100 d-flex flex-column align-items-center justify-content-center mb-3'>
           <h1 style={{fontSize: "8vh"}}>Useful Tools</h1>
-          <h4 style={{}}>For a better online experience</h4>
+          <h4>For a better online experience</h4>
         </div>
         <div className={styles.grid}>
           <a
