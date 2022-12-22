@@ -4,7 +4,7 @@ import EndpointModel from './EndpointModel';
 
 export default function Endpoints({ name }) {
   return (
-    <div className="my-5">
+    <div>
       <h2 style={{fontWeight: "normal"}} className="mb-3">{name}</h2>
       <Accordion defaultActiveKey="0">
         <EndpointModel
