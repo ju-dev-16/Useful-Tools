@@ -1,5 +1,3 @@
-import { unstable_getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]";
 import { PrismaClient } from "@prisma/client";
 
 const fetchData = async (method = "GET", body, id) => {
@@ -16,43 +14,42 @@ const fetchData = async (method = "GET", body, id) => {
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
-  const session = await unstable_getServerSession(req, res, authOptions);
-
   const user = await prisma.user.findUnique({
     where: {
-      email: session.user.email
+      apiKey: req.query["apiKey"]
     }
   });
 
-  if (req.query["apiKey"] === user.apiKey) {
-    switch (req.method) {
-      case "GET":
-        // fetchData(...)
-        res.status(200).send([
-          { 
-            createdAt: new Date(),
-            link: "https://useful-tools.org"    
-          }, 
-          {
-            createdAt: new Date(),
-            link: "https://wikipedia.com"    
-          }
-        ]);
-        break;
-      case "POST":
-    
-        break;
-      case "PUT":
-
-        break;
-      case "DELETE":
-
-        break;
-      default:
-        break;
-    }
-  } else {
+  if (!user) {
     res.status(401).send("Unauthorized");
+    res.end();
   }
+
+  switch (req.method) {
+    case "GET":
+      res.status(200).send([
+        { 
+          createdAt: new Date(),
+          link: "https://useful-tools.org"    
+        }, 
+        {
+          createdAt: new Date(),
+          link: "https://wikipedia.com"    
+        }
+      ]);
+      break;
+    case "POST":
+    
+      break;
+    case "PUT":
+
+      break;
+    case "DELETE":
+
+      break;
+    default:
+      break;
+  }
+
   res.end();
 }
