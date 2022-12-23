@@ -1,5 +1,6 @@
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
+import { PrismaClient } from "@prisma/client";
 
 const fetchData = async (method = "GET", body, id) => {
   const response = await fetch("http://localhost:8080/api/v1/tools" + id ? "?id=" + id : "", {
@@ -12,9 +13,18 @@ const fetchData = async (method = "GET", body, id) => {
   return response.json();
 }
 
+const prisma = new PrismaClient();
+
 export default async (req, res) => {
   const session = await unstable_getServerSession(req, res, authOptions);
-  if (session) {
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: session.user.email
+    }
+  });
+
+  if (req.query["apiKey"] === user.apiKey) {
     switch (req.method) {
       case "GET":
         // fetchData(...)

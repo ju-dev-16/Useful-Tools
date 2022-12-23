@@ -12,16 +12,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Endpoints from "../../components/ui/Endpoints";
 
-export default function DocsPage() {
-  const [apiKey, setApiKey] = useState("");
+export default function DocsPage({ currentApiKey }) {
+  const [apiKey, setApiKey] = useState(currentApiKey);
   const [isVisibile, setIsVisibile] = useState(true);
   const [copyIcon, setCopyIcon] = useState(faCopy);
+
+  console.log(apiKey);
 
   useEffect(() => {
     const handleIconChange = setTimeout(() => setCopyIcon(prevState => prevState = faCopy), 2500);
 
     return () => clearInterval(handleIconChange);
   }, [copyIcon]);
+
+  const updateApiKey = async (newKey) => {
+    await fetch("/api/v1/user?apiKey=" + newKey, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
 
   return (
     <div>
@@ -58,16 +69,19 @@ export default function DocsPage() {
             {apiKey === "" 
             ? (
             <Button className="d-flex align-items-center" onClick={() => {
-              setApiKey(prevState => prevState = require('crypto').randomBytes(32).toString('hex'));
+              const generatedApiKey = require('crypto').randomBytes(32).toString('hex');
+              updateApiKey(generatedApiKey);
+              setApiKey(prevState => prevState = generatedApiKey);
               setIsVisibile(prevState => prevState = true);
             }}>
               <FontAwesomeIcon icon={faKey} width={15} className="me-2" /> Create API Key 
             </Button>              
             )
             : (
-            <Button className="d-flex align-items-center" onClick={() => {
+            <Button variant="danger" className="d-flex align-items-center" onClick={() => {
+              updateApiKey("");
               setApiKey(prevState => prevState = "");
-              // Delete it also from the database
+              // TODO: Delete it also from the database
               setIsVisibile(prevState => prevState = true);
             }}>
               <FontAwesomeIcon icon={faTrashCan} width={15} className="me-2" /> Delete API Key 
@@ -94,9 +108,16 @@ export async function getServerSideProps({ req }) {
     }
   }
 
+  const user = await prisma.user.findUnique({
+    where: {
+      email: session.user.email
+    }
+  });
+
   return {
     props: {
-      session: session
+      session: session,
+      currentApiKey: user.apiKey
     }
   }
 }
