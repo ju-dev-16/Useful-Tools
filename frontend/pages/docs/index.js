@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-import { faKey, faEye, faEyeSlash, faCopy, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faKey, faEye, faEyeSlash, faCopy, faCheck, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Endpoints from "../../components/ui/Endpoints";
@@ -51,15 +51,29 @@ export default function DocsPage() {
                 value={apiKey}
                 contentEditable={false}
                 className="shadow-none"
+                style={{cursor: "default"}}
               />
             </>
             )}
+            {apiKey === "" 
+            ? (
             <Button className="d-flex align-items-center" onClick={() => {
               setApiKey(prevState => prevState = require('crypto').randomBytes(32).toString('hex'));
               setIsVisibile(prevState => prevState = true);
             }}>
               <FontAwesomeIcon icon={faKey} width={15} className="me-2" /> Create API Key 
-            </Button>
+            </Button>              
+            )
+            : (
+            <Button className="d-flex align-items-center" onClick={() => {
+              setApiKey(prevState => prevState = "");
+              // Delete it also from the database
+              setIsVisibile(prevState => prevState = true);
+            }}>
+              <FontAwesomeIcon icon={faTrashCan} width={15} className="me-2" /> Delete API Key 
+            </Button>                
+            )
+          }
           </InputGroup>
           <Endpoints name="tools" />
         </div>
